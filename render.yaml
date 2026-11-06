@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: chatbotbv-v101
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: INTERNAL_BRIDGE_SECRET
+        generateValue: true
+      - key: SECRET_KEY
+        generateValue: true
+      - key: UPLOAD_TOKEN_SECRET
+        generateValue: true
+      - key: CMS_STORE
+        value: /var/data/bvag-cms.sqlite3

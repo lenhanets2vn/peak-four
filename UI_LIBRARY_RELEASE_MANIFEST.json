@@ -1,0 +1,34 @@
+{
+  "version": "1.0.62-rc.1",
+  "baseline": "v1.0.61-rc.1",
+  "changed": [
+    "package-lock.json",
+    "package.json",
+    "src/components/admin/AdminDashboard.tsx",
+    "src/components/admin/AnalyticsDashboard.tsx",
+    "src/components/admin/WebsiteSettings.tsx",
+    "src/components/common/SmartActionButton.tsx",
+    "src/components/landing/DynamicSection.tsx",
+    "src/components/landing/MobileStickyCTA.tsx",
+    "src/components/landing/SiteHeader.tsx",
+    "src/components/landing/SiteSearchOverlay.tsx",
+    "src/index.css",
+    "src/types.ts",
+    "tests/ui-cta-integration-contract.test.cjs",
+    "tests/ui-default-admin-hero-contract.test.cjs"
+  ],
+  "added": [
+    "QA_REPORT-v1.0.62-rc.1.md",
+    "RELEASE_NOTES-v1.0.62-rc.1.md",
+    "UI_LIBRARY_GUIDE-v1.0.62-rc.1.md",
+    "src/components/admin/UiLibraryPanel.tsx",
+    "src/utils/uiLibrary.ts",
+    "tests/ui-library-registry.test.cjs"
+  ],
+  "removed": [],
+  "pythonFilesModified": 0,
+  "cjsTestsPassed": 49,
+  "syntaxFilesPassed": 102,
+  "sqlAssertionsPassed": 4,
+  "fullBuildVerified": false
+}

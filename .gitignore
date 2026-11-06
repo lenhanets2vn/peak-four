@@ -1,0 +1,18 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Sensitive/runtime-only CMS data
+data/admin_users.json
+data/analytics_events.json
+data/analytics_costs.json
+
+# Server-side Gemini credential (never commit)
+
+# Telegram server-side secret (never commit; contains no transcript)
+data/telegram-chat-secret.json

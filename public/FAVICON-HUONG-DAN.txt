@@ -1,0 +1,16 @@
+FAVICON TĨNH TOÀN HỆ THỐNG - v1.0.49
+
+CÁCH DỄ NHẤT:
+1. Chuẩn bị ảnh vuông PNG.
+2. Đặt đúng tên: favicon.png
+3. Copy vào thư mục này: public/favicon.png
+4. Commit/push source và deploy lại Render.
+5. Không cần nhập favicon trong CMS/Firestore.
+6. Kiểm tra: https://TEN-DOMAIN/favicon.ico
+
+CŨNG HỖ TRỢ:
+- public/favicon.ico
+- public/favicon.webp
+
+Thứ tự ưu tiên: favicon.ico > favicon.png > favicon.webp > favicon CMS/Firestore fallback.
+Khuyến nghị ảnh 128x128, 256x256 hoặc 512x512, tỷ lệ vuông.

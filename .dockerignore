@@ -1,0 +1,13 @@
+node_modules
+dist
+data
+.git
+.env
+.env.production
+**/__pycache__
+**/*.pyc
+**/*.zip
+
+firebase-applet-config.json
+**/service-account*.json
+**/credentials.json

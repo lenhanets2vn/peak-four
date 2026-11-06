@@ -1,0 +1,42 @@
+{
+  "release": "BAOVIET_FULL_RELEASE_20261105_CLEAN_BASE_v1.0.63",
+  "version": "1.0.63-clean.0",
+  "date": "2026-11-05",
+  "starting_state": {
+    "published": false,
+    "hero": "empty",
+    "sections": 0,
+    "form_fields": 0,
+    "popups": 0,
+    "menus": 0,
+    "search_suggestions": 0,
+    "chatbot_enabled": false,
+    "search_description": "empty until CMS publish"
+  },
+  "feature_removed": "Pricing page and independent Python pricing engine RC4.20 (not just UI hide)",
+  "removed_routes": [
+    "/tinh-phi",
+    "/pricing",
+    "/api/rc/pricing",
+    "/rc4-static"
+  ],
+  "kept_features": [
+    "CMS",
+    "Lead",
+    "Auth",
+    "Firebase/Firestore",
+    "Redis",
+    "Chatbot configured in CMS",
+    "SEO editor",
+    "Draft and Publish",
+    "CTA URL/Category/Section"
+  ],
+  "existing_content_policy": "No automatic deletion of any previously published data in Firebase/Firestore or local persisted state.",
+  "deployment": "Docker Node.js-only. Existing Render environment and persistent data require separate review.",
+  "tests": {
+    "node_regression_passed": 95,
+    "code_parse_files": 160,
+    "syntax_errors": 0,
+    "vite_build": "not verified: npm dependencies unavailable"
+  }
+}

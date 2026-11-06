@@ -1,0 +1,11 @@
+{
+  "name": "Bảo Việt CMS — Clean Base",
+  "description": "Bản nền CMS sạch: chưa cấu hình thì không có Landing Page, nội dung mẫu, chatbot mẫu; trang và backend Tính phí độc lập đã được loại bỏ. CMS quản lý nội dung, lead, SEO, xác thực và Publish vẫn được giữ.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+  "version": "1.0.63-clean.0"
+}
