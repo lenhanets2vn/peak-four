@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <title>Website</title>
+    <meta name="description" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:description" content="" />
+    <script>
+      // Defensive setter patch for environments where window.fetch has only a getter
+      (function() {
+        try {
+          var originalFetch = window.fetch ? window.fetch.bind(window) : null;
+          var desc = Object.getOwnPropertyDescriptor(window, 'fetch') ||
+                     (window.Window && Object.getOwnPropertyDescriptor(window.Window.prototype, 'fetch'));
+          if (!desc || !desc.set || !desc.writable) {
+            Object.defineProperty(window, 'fetch', {
+              get: function() { return originalFetch; },
+              set: function(fn) { originalFetch = fn; },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (e) {
+          // Ignore patch failures
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

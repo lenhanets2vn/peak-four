@@ -1,0 +1,23 @@
+BASELINE v1.0.60 → v1.0.61-rc.1
+
+Changed: 14
+package-lock.json
+package.json
+src/index.css
+tests/ui-cta-integration-contract.test.cjs
+src/components/landing/HeroSection.tsx
+src/components/landing/LandingPage.tsx
+src/components/landing/DynamicSection.tsx
+src/components/landing/SiteSearchOverlay.tsx
+src/components/admin/AdminDashboard.tsx
+src/components/admin/AnalyticsDashboard.tsx
+src/components/admin/WebsiteSettings.tsx
+src/components/admin/SettingsEditors.tsx
+src/components/admin/ContentEditor.tsx
+src/components/common/SmartActionButton.tsx
+
+Added: 2
+tests/ui-editor-runtime-smoke.test.cjs
+tests/ui-default-admin-hero-contract.test.cjs
+
+Removed: 0

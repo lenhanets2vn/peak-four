@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Connection testing doc
+    match /test/{testId} {
+      allow read: if isValidId(testId);
+    }
+
+    // Leads collection
+    match /leads/{leadId} {
+      allow read: if isSignedIn();
+      allow create: if isValidId(leadId) &&
+        request.resource.data.name is string && request.resource.data.name.size() <= 200 &&
+        request.resource.data.phone is string && request.resource.data.phone.size() <= 30;
+      allow update: if isSignedIn() && isValidId(leadId);
+      allow delete: if isSignedIn() && isValidId(leadId);
+    }
+
+    // Pages real-time sync markers
+    match /pages_sync/{pageId} {
+      allow read: if isValidId(pageId);
+      allow write: if isSignedIn() && isValidId(pageId);
+    }
+
+    // Admin chat session realtime updates. Chat contains customer data, so
+    // only authenticated Firebase users may subscribe. The client scopes its
+    // listener to one active session document at a time.
+    match /cms_ai_chat_sessions/{sessionId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    // User profile linking
+    match /users/{userId} {
+      allow read, write: if isValidId(userId) && isOwner(userId);
+    }
+  }
+}

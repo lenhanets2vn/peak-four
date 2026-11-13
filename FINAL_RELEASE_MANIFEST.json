@@ -1,0 +1,39 @@
+{
+  "release": "v1.0.65-no-pricing-site-shell-login-footer-fix-20261113",
+  "edition": "NO_PRICING — isolated build",
+  "scope": "CMS/Landing/Lead/Chatbot/SEO; no dedicated premium calculator or Python RC engine",
+  "public_runtime": "Node/Express + Vite built assets",
+  "internal_runtime": "Node.js only",
+  "render_runtime": "docker",
+  "health_path": "/api/health",
+  "no_pricing_routes": [
+    "/tinh-phi",
+    "/pricing",
+    "/api/rc/pricing",
+    "/rc4-static"
+  ],
+  "persistent_data_policy": "Do not erase Firestore/current CMS data on deployment",
+  "checks": {
+    "node_contract_tests": "128/128 PASS (node --test tests/*.cjs)",
+    "changed_ts_tsx_syntax": "101/101 TS/TSX source files parse without syntax error (global TypeScript parser)",
+    "full_vite_build": "NOT VERIFIED (npm ci failed: npm Exit handler never called in this execution environment)",
+    "live_render": "NOT VERIFIED (not deployed to hosted service)",
+    "live_firestore": "NOT VERIFIED (requires customer cloud project)",
+    "live_google_sheets": "NOT VERIFIED (requires customer Apps Script)"
+  },
+  "change_scope": [
+    "Hero zero overlay rendering",
+    "CMS Google Sheets Apps Script webhook setup, test and form auto-sync",
+    "Unconfigured CMS brand-neutral defaults and removal of inert bundled samples",
+    "Admin entry no longer waits for public landing/cloud retry",
+    "CMS config failure shows actionable error and cloud diagnostics instead of indefinite spinner",
+    "Authenticated CMS draft read permitted during fresh cloud-unconfigured setup; published and write guards remain enforced",
+    "Confirmed empty new Firestore can initialize unpublished white-label draft",
+    "Neutral login fallback branding; configured CMS appearance remains data-driven",
+    "CMS config API timeout after 30 seconds",
+    "Short public pages use full-height column layout to keep footer at bottom",
+    "Desktop CMS login link remains available when utility row is off or sticky header compacts",
+    "Mobile CMS login link is available across normal and centered-logo layouts",
+    "Added site shell/login/footer regression tests and cross-edition audit"
+  ]
+}

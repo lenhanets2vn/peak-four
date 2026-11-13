@@ -1,0 +1,11 @@
+import React, {useEffect,useState} from 'react';
+import {getAuthHeaders,authFetch} from '../../../services/api';
+interface GeminiApiKeyManagerCardProps {canEdit?:boolean;onKeyUpdated?:()=>void;compact?:boolean;}
+export const GeminiApiKeyManagerCard: React.FC<GeminiApiKeyManagerCardProps> = ({onKeyUpdated}) => {
+ const [security,setSecurity]=useState<any>(null);
+ const [status,setStatus]=useState<any>(null);const [message,setMessage]=useState('');const [busy,setBusy]=useState(false);
+ const load=async()=>{try{const response=await authFetch('/api/ai/config/gemini-key',{headers:getAuthHeaders()});const data=await response.json();if(!response.ok)throw new Error(data.error);setStatus(data);}catch{setMessage('Không thể đọc trạng thái AI.');}};
+ useEffect(()=>{void load();authFetch('/api/security/status',{headers:getAuthHeaders()}).then(async response=>{if(response.ok)setSecurity(await response.json());}).catch(()=>{});},[]);
+ const test=async()=>{setBusy(true);try{const response=await authFetch('/api/ai/config/test-key',{method:'POST',headers:getAuthHeaders(),body:'{}'});const data=await response.json();setMessage(response.ok && data.valid ? 'AI hoạt động: '+data.modelTested : 'Kiểm tra AI chưa thành công.');onKeyUpdated?.();}catch{setMessage('Không thể kết nối máy chủ.');}finally{setBusy(false);}};
+ return <section className="rounded-xl border bg-white p-5 space-y-3"><h3 className="font-semibold">Kết nối AI</h3><p>{status ? status.configured ? 'Đã cấu hình tại backend' : 'Chưa cấu hình' : 'Đang kiểm tra…'}</p><p className="text-sm text-gray-600">Khóa API được quản lý bằng biến môi trường backend. CMS chỉ hiển thị trạng thái kết nối.</p><button type="button" onClick={test} disabled={busy || !status?.configured} className="rounded bg-blue-600 text-white px-4 py-2 disabled:opacity-50">{busy?'Đang kiểm tra…':'Kiểm tra kết nối'}</button><p role="status">{message}</p>{security && <div className="border-t pt-3 text-sm space-y-1"><p>Redis: {security.redis.configured ? security.redis.available ? 'Đang hoạt động' : 'Đã cấu hình, chưa xác nhận kết nối' : 'Chưa cấu hình (dùng cache bộ nhớ)'}</p><p>Mã hóa dữ liệu local: {security.encryptionConfigured?'Đã cấu hình':'Chưa cấu hình'}</p><p>Google OAuth: {security.oauthConfigured?'Đã cấu hình':'Chưa cấu hình'}</p></div>}</section>;
+};

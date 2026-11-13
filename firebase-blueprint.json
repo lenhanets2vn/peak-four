@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "Lead submission received from landing page forms",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the lead",
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "maxLength": 128
+        },
+        "submittedAt": {
+          "type": "string",
+          "description": "ISO timestamp when the lead was submitted",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "description": "Customer name",
+          "maxLength": 200
+        },
+        "phone": {
+          "type": "string",
+          "description": "Customer phone number",
+          "maxLength": 30
+        },
+        "email": {
+          "type": "string",
+          "description": "Customer email address",
+          "maxLength": 200
+        },
+        "syncStatus": {
+          "type": "string",
+          "description": "Sync status with Google Sheets or CRM",
+          "enum": ["pending", "synced", "failed"]
+        }
+      },
+      "required": ["id", "submittedAt", "name", "phone"]
+    },
+    "PageSync": {
+      "title": "PageSync",
+      "description": "Real-time synchronization state for landing pages",
+      "type": "object",
+      "properties": {
+        "pageId": {
+          "type": "string",
+          "description": "Unique page identifier",
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "maxLength": 128
+        },
+        "version": {
+          "type": "number",
+          "description": "Current published version number"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of the last update",
+          "maxLength": 64
+        },
+        "updatedBy": {
+          "type": "string",
+          "description": "Email or username of the updater",
+          "maxLength": 200
+        }
+      },
+      "required": ["pageId", "version", "updatedAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with linked Firebase authentication identity",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID",
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "User email",
+          "maxLength": 200
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 200
+        },
+        "role": {
+          "type": "string",
+          "description": "User role in CMS",
+          "enum": ["superadmin", "marketing_admin", "content_editor", "viewer"]
+        },
+        "linkedAt": {
+          "type": "string",
+          "description": "ISO timestamp when account was linked to Firebase",
+          "maxLength": 64
+        }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Collection of real-time captured leads"
+    },
+    "/pages_sync/{pageId}": {
+      "schema": "PageSync",
+      "description": "Real-time sync markers for landing pages"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User account linking and profiles"
+    }
+  }
+}

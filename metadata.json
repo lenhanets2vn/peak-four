@@ -1,0 +1,11 @@
+{
+  "name": "Remix Lead Generation CMS",
+  "description": "Thương hiệu Lead CMS v1.0.60 với nút Đổi sản phẩm trực tiếp trên khung chatbot, chuyển flow sản phẩm theo Taxonomy một cách xác định, giữ các lớp intent-switch, dirty-state, Redis event queue, refresh-token rotation và cloud/security hiện có.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+  "version": "1.0.65-no-pricing"
+}
